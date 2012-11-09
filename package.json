@@ -3,17 +3,17 @@
   "version": "0.0.1-dev",
   "dependencies": {
     "coffee-script": "1.x",
-    "q" : "0.x",
-    "request" : "2.x",
-    "colors" : "0.x",
-    "tail" : "0.x"
+    "q": "0.x",
+    "request": "2.x",
+    "buffertools": "1.x",
+    "colors": "0.x"
   },
   "scripts": {
     "test": "mocha --require should --compilers coffee:coffee-script --colors"
   },
   "devDependencies": {
     "mocha": "*",
-    "service-reporter" : "0.x",
+    "service-reporter": "0.x",
     "should": "*",
     "sinon": "*"
   }, 
