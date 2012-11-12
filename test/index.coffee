@@ -71,14 +71,16 @@ describe "Log reporter", ->
       logReporter = new LogReporter reporter, tmpFile, { poolTimeLimit: 500, poolSizeLimit: 0.05 }
       logReporter.start()
 
-      fs.writeFileSync tmpFile, "abcdef\nslkdjfsldkfj", "utf-8"
+      str1 = "abcdef\nslkdjfsldkfj"
+      str2 = "ääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääää"
+      fs.writeFileSync tmpFile, str1, "utf-8"
       setTimeout ->
         reporter.submit.callCount.should.eql 0
-        fs.writeFileSync tmpFile, "ääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääää", "utf-8"
+        fs.writeFileSync tmpFile, str2, "utf-8"
       , 10
       setTimeout ->
         reporter.submit.callCount.should.eql 1
-        reporter.submit.args[0][1].toString("utf8").should.eql "abcdef\nslkdjfsldkfj" + "ääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääääää"
+        reporter.submit.args[0][1].toString("utf8").should.eql str1 + str2
         logReporter.stop()
         done()
       , 20
