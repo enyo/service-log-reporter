@@ -48,8 +48,6 @@ class LogReporter
     @poolSize += chunk.length
     @pool.push chunk
 
-    console.error "Pool size: #{@poolSize}, limit #{@options.poolSizeLimit * 1000}"
-
     if @poolSize >= (@options.poolSizeLimit * 1000)
       @submitPool()
 
